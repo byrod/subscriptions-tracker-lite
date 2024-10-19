@@ -1,5 +1,7 @@
 # Subscriptions Tracker
 
+![App Screenshot](screenshot-plus.png)
+
 >FR_fr
 
 ## Description
