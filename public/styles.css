@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+}
+
+body {
+    background-color: #111827;
+    color: white;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 1280px;
+    width: 100%;
+    padding: 20px; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px 20px 10px;
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+.total-monthly-text {
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 40px 0 0 0;
+}
+
+#total-subscriptions {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #2379fa;
+}
+
+#total-monthly {
+    font-weight: 600;
+    font-size: 2rem;
+    color: #4ad46e;
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.add-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.add-btn:hover {
+    background-color: #0056b3;
+}
+
+.subscriptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-top: 40px !important;
+    width: 100%;
+}
+
+.card {
+    background-color: #1f2937;
+    padding: 20px;
+    width: calc(33.33% - 20px); /* Divise en trois colonnes, avec un espace entre les cartes */
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, background-color 0.6s ease; 
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: #364050;
+}
+
+.convert-icon {
+    color: #bbb;
+    vertical-align: middle;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: #111827;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    z-index: 100;
+    top: -15px;  /* Positionner la tooltip au-dessus de l'icône */
+    left: 75%;
+    transform: translateX(-50%) translateY(-10px);  /* Légèrement au-dessus et cachée au départ */
+    opacity: 0;  /* Tooltip invisible par défaut */
+    white-space: nowrap;
+    display: block;  /* Toujours block, on contrôle via l'opacité */
+    transition: opacity 0.3s ease, transform 0.3s ease;  /* Transition fluide */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip.show {
+    opacity: 1;  /* Rendre la tooltip visible */
+    transform: translateX(-50%) translateY(0);  /* Animation vers sa position finale */
+}
+
+.icons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    /* display: none; */
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;  /* Transition fluide pour l'apparition */
+}
+
+.card:hover .icons {
+    /* display: block; */
+    opacity: 1;
+}
+
+.edit-icon, .delete-icon {
+    cursor: pointer;
+    margin: 0 3px;
+    font-size: 1.2rem;
+    /* transition: transform 0.3s ease, opacity 0.3s ease;  */
+}
+
+.edit-icon {
+    color: #ffaf09;
+}
+
+.edit-icon:hover {
+    color: #ffdf08;
+}
+
+.delete-icon {
+    color: #ff4d4f;
+}
+
+.delete-icon:hover {
+    color: #ff2020;
+}
+
+@media (max-width: 900px) {
+    .card {
+        width: calc(50% - 20px); /* Passe à deux colonnes quand l'écran est plus petit */
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;  /* Empile le titre et le bouton */
+        align-items: flex-start; /* Aligne les éléments à gauche */
+    }
+
+    .add-btn {
+        margin-top: 10px;  /* Ajouter un peu d'espace entre le titre et le bouton */
+        width: 100%;       /* Le bouton prend toute la largeur sur mobile */
+    }
+
+    h1 {
+        margin-bottom: 10px;  /* Espacement entre le titre et le bouton */
+    }
+
+    .card {
+        width: calc(100% - 20px); /* Passe à une colonne pour les petits écrans */
+    }
+
+    .tooltip {
+        left: 60%;
+    }
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4ad46e;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.visit {
+    color: #4b92ff;
+    text-decoration: none;
+}
+
+.visit:hover {
+    text-decoration: underline;
+}
+
+.subscription-header {
+    display: flex;
+    align-items: center;  
+    gap: 10px;
+    justify-content: space-between;
+    position: relative; 
+}
+
+.subscription-header h2 {
+    margin: 0;  /* Supprimer la marge pour éviter un décalage du titre */
+    flex: 1;  /* Permet à l'élément de prendre tout l'espace disponible */
+}
+
+.reminder-icon {
+    color: #f39c12;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.company-logo {
+    width: 25px; 
+    height: auto;
+    display: block;
+    margin-right: 5px;
+}
+
+.subscription-header h2 {
+    margin: 0;  /* Retirer les marges autour du h2 pour un alignement propre */
+}
+
+/* Styles de la modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal input, .modal select {
+    background-color: #374151;
+    color: #fff;
+    border: 1px solid #ccc;    
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 500 !important;
+}
+
+/* Garde le fond gris et le texte gris foncé même après autocomplétion */
+.modal input:-webkit-autofill {
+    background-color: #374151 !important;
+    color: #fff !important;
+    -webkit-box-shadow: 0 0 0 30px #374151 inset !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+/* Lors du focus après autocomplétion, garde le fond et la couleur du texte */
+.modal input:-webkit-autofill:focus {
+    background-color: #374151 !important;
+    color: #fff !important;
+    -webkit-box-shadow: 0 0 0 30px #374151 inset !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+.modal-content {
+    background-color: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    width: 460px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.input-field {
+    flex: 1;  
+}
+
+.input-field select {
+    padding: 10px;
+}
+
+.close-btn {
+    float: right;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#action-btn {
+    background-color: #0d6efd;
+    color: white;
+    margin-top: 30px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#conversion-rate-container {
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriptions Tracker</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Subscriptions Tracker <span id="total-subscriptions"></span></h1>
+            
+            <button id="add-subscription-btn" class="add-btn">
+                <span class="material-icons add-icon">add_circle</span>
+                Add Subscription
+            </button>
+        </header>
+
+        <p class="total-monthly-text">Total Monthly: <span id="total-monthly"></span></p>
+
+        <div class="subscriptions" id="subscriptions">
+             <!-- Les cartes seront ajoutées ici dynamiquement -->
+        </div>
+
+        <div id="conversion-rate-container" style="text-align: center; margin-top: 20px;"></div>
+
+        <!-- Modale pour ajouter/éditer les informations -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="modal-title"></h2>
+
+                <form id="edit-form">                    
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>                    
+
+                    <label for="url">URL</label>
+                    <!-- <input type="text" id="url" name="url"> -->
+                    <input type="url" id="url" name="url" required pattern="https?://.+" placeholder="https://example.com">
+                    <span class="error-message" style="display: none; color: red;">URL is not valid.</span>
+
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="price">Price</label>
+                            <input type="text" id="price" name="price" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="currency">Currency</label>
+                            <select id="currency" name="currency">
+                                <option value="€">€</option>
+                                <option value="$">$</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="frequency">Frequency</label>
+                            <select id="frequency" name="frequency">
+                                <option value="daily">Daily</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="annual">Annual</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="reminder">Reminder</label>
+                        <input type="date" id="reminder" name="reminder">
+                    </div>
+                    
+                    <button type="submit" id="action-btn">Update Subscription</button>
+                </form>
+            </div>
+        </div>
+
+    <script type="module" src="./app/board.js"></script>
+
+</body>
+</html>
